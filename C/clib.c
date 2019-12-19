@@ -20,7 +20,7 @@ int get_string(char *str)				//stdlib.h
 {
     int i = 0;
     char ch = 0;
-    for (i = 0; (ch = getchar()) != '\n';/*void*/)
+    while((ch = getchar()) != '\n')
     {
         str[i] = ch;
         i++;

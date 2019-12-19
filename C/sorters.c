@@ -113,7 +113,7 @@ int insertion_sorter(int *array, int length, bool (*comp)(int, int))
                 array[p] = array[p - 1]; //大项右移
                 p--;                     //从后往前遍历已排序数列
                 count++;                 //计算总排序次数
-            } while (array[p - 1] > insert && p > 0);
+            } while ((p > 0) && comp(array[p - 1] , insert));
             array[p] = insert; //将待排项插入
         }
 
