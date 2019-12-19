@@ -32,7 +32,7 @@ bool down_comp(int a, int b) //降序排列
 }
 //////////////////////////////////////////////////////////////////////////函数声明
 int bubble_sorter(int *array, int length, bool (*comp)(int, int));     //冒泡排序
-void selection_sorter(int *array, int length, bool (*comp)(int, int)); //选择排序
+int selection_sorter(int *array, int length, bool (*comp)(int, int)); //选择排序
 int insertion_sorter(int *array, int length, bool (*comp)(int, int));  //插入排序
 //////////////////////////////////////////////////////////////////////////
 int main(int argc, char *argv[])
@@ -68,6 +68,8 @@ int main(int argc, char *argv[])
 //////////////////////////////////////////////////////////////////////////冒泡排序
 int bubble_sorter(int *array, int length, bool (*comp)(int, int))
 {
+    if(length==1)
+        return 0;
     int i = 0, count = 0, flag = 0;
 
     do
@@ -84,9 +86,11 @@ int bubble_sorter(int *array, int length, bool (*comp)(int, int))
     return count;     //返回总冒泡次数(可选)
 }
 //////////////////////////////////////////////////////////////////////////选择排序
-void selection_sorter(int *array, int length, bool (*comp)(int, int))
+int selection_sorter(int *array, int length, bool (*comp)(int, int))
 {
-    int i = 0, j = 0, tmp = 0, swap = 0;
+    if(length==1)
+        return 0;
+    int i = 0, j = 0, tmp = 0, swap = 0,count = 0;
 
     for (i = 0, tmp = 0; i < length; i++)
     {
@@ -94,11 +98,15 @@ void selection_sorter(int *array, int length, bool (*comp)(int, int))
             if (comp(array[swap], array[j])) //遍历寻找余项最值
                 swap = j;
         SWAP_INT(array[swap], array[i]) //将余项最值与未排序数列第一项交换
+        count++;
     }
+    return count;
 }
 //////////////////////////////////////////////////////////////////////////插入排序
 int insertion_sorter(int *array, int length, bool (*comp)(int, int))
 {
+    if(length==1)
+        return 0;
     int i = 0, j = 0, insert = 0, p = 0, count = 0;
 
     do
