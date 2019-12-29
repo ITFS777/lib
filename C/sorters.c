@@ -129,4 +129,5 @@ int insertion_sorter(int *array, int length, bool (*comp)(int, int))
     } while (i < (length - 1));
     return count; //返回总排序次数(可选)
 }
+
 //////////////////////////////////////////////////////////////////////////
