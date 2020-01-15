@@ -6,9 +6,6 @@
 //////////////////////////////////////////////////////////////////////////
 char *get_string(char *alloc_str_length_1);
 char* get_time(void);
-void print_bin_8byte(const unsigned long long num, const int size_t);
-void print_bin_4byte(const unsigned int num, const int size_t);
-void print_bin(const unsigned long long num, const int size_t, const unsigned int size_group, const bool non_segmentation);
 void insert_str(char *string_1, char *string_2, char ch);
 int dec_com(int array_dec_3_3);
 bool is_prime_num(long long int num);
@@ -64,61 +61,6 @@ char* get_time(void)			//time.h
 	free(ptm);
 	ptm = NULL;
 	return asctime(tmpt);
-}
-//////////////////////////////////////////////////////////////////////////
-void print_bin_8byte(const unsigned long long num, const size_t size)
-{
-	unsigned long long flag = 1ULL << (size * 8 - 1);
-	int count = 0;
-	while(flag != 0)
-	{
-		printf("%d", 0 != (a & flag));
-		flag >>= 1;
-		++count;
-		if(count % 8 == 0)
-			printf(" ");
-	}
-	printf("\n");
-}
-void print_bin_4byte(const unsigned long long num, const size_t size)
-{
-	unsigned int flag = 1U << (size * 8 - 1);
-	int count = 0;
-	while(flag != 0)
-	{
-		printf("%d", 0 != (a & flag));
-		flag >>= 1;
-		++count;
-		if(count % 8 == 0)
-			printf(" ");
-	}
-	printf("\n");
-}
-void print_bin(const unsigned long long num, const size_t size, const unsigned int group, const bool nospace)
-{//num为待转换为二进制数的十进制数原形，size为字节宽度，group为二进制分组大小,nospace为是否分组
-	unsigned long long flag = 1ULL << (size * 8 - 1);		/*(size * 8)为二进制位数*/
-	int count = 0, zero = 0,i = 0;
-	while(0 == (num & flag))					/*记1前0的个数*/
-	{
-		flag >>= 1;
-		++count;
-	}
-	if(nospace)
-	{
-		zero = count % group;						/*将每组中不足组数的用0补齐*/
-		for(i = 0; i < zero; i++)
-			printf("0");
-	}
-	while(flag != 0)
-	{
-		printf("%d", 0 != (num & flag));
-		flag >>= 1;
-		++count;
-		if(nospace == 0)
-			if(count % group == 0)
-				printf(" ");
-	}
-	printf("\n");
 }
 //////////////////////////////////////////////////////////////////////////
 int dec_com(int dec[3][3])

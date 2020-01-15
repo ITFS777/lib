@@ -1,0 +1,10 @@
+long long int intPower(const int base, const int index);
+//////////////////////////////////////////////////////////////////////////
+/* 二进制与十进制相互转换 */
+void printBin(const unsigned long long num, const int size_t, const unsigned int group_size);
+long long int binstrToOct(const char *str);
+//////////////////////////////////////////////////////////////////////////
+/* 十进制与十六进制相互转换 */
+int hexchrToOct(const char hex);
+long long int hexstrToOct(const char *str);
+//////////////////////////////////////////////////////////////////////////
