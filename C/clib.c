@@ -11,7 +11,7 @@ int dec_com(int array_dec_3_3);
 bool is_prime_num(long long int num);
 bool is_letter(char ch);
 bool is_num(char ch);
-void *hash(const char *name, const void *base, int size, const char *hash_seed);
+void *hash(const char *name, const void *base, int size, const char *hash_salt);
 //////////////////////////////////////////////////////////////////////////
 int get_string(char *str)
 { /* 将读取的字符串保存在str中,并返回字符串长度,需包含strlib.h */
@@ -130,17 +130,17 @@ bool is_num(char ch)
 		return false;
 }
 //////////////////////////////////////////////////////////////////////////
-void *hash(const char *name, const void *base, int size, const char *hash_seed)
-{ /* 给定hash_seed、散列基址和散列空间大小后,将目的字符串name转换成void类型散列地址 */
+void *hash(const char *name, const void *base, int size, const char *hash_salt)
+{ /* 给定hash_salt、散列基址和散列空间大小后,将目的字符串name转换成void类型散列地址 */
 	int i = 0;
 	long long int tmp = 0, p3 = 0;
 	char p1 = 0, p2 = 0;
 	for (i = 0; i < strlen(name); i++)
 	{
-		p1 = (name[i] & 0xA5) | (hash_seed[i % strlen(hash_seed)] & 0x5A);
-		p2 = (name[i] & 0x5A) | (hash_seed[i % strlen(hash_seed)] & 0xA5);
+		p1 = (name[i] & 0xA5) | (hash_salt[i % strlen(hash_salt)] & 0x5A);
+		p2 = (name[i] & 0x5A) | (hash_salt[i % strlen(hash_salt)] & 0xA5);
 		tmp += ((p1 & 0xF0) | (p2 & 0x0F)) + ((p1 & 0x0F) | (p2 & 0xF0));
-		p3 += hash_seed[i % strlen(hash_seed)];
+		p3 += hash_salt[i % strlen(hash_salt)];
 	}
 	return (base + (tmp * p3 % size));
 }

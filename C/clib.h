@@ -5,4 +5,4 @@ int dec_com(int array_dec_3_3);
 bool is_prime_num(long long int num);
 bool is_letter(char ch);
 bool is_num(char ch);
-void *hash(const char *name, const void *base, int size, const char *hash_seed);
+void *hash(const char *name, const void *base, int size, const char *hash_salt);
