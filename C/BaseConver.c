@@ -11,9 +11,15 @@ long long int hexstrToOct(const char *str);
 //////////////////////////////////////////////////////////////////////////
 void printBin(const unsigned long long num, const int size_t, const unsigned int group_size)
 { //num为待转换为二进制数的十进制数原形，size_t为字节宽度，group_size为位分组大小,0表示不分组
-    unsigned long long flag = 1ULL << (size_t * 8 - 1); /*(size_t * 8)为二进制位数*/
     int count = 0, zero = 0, i = 0;
-    while ((0 == (num & flag)) && count < size_t * 8) /*记1前0的个数*/
+    if(num == 0)
+    {
+        for(i = 0; i < size_t*8;i++)
+            putchar('0');
+        goto _end;
+    }
+    unsigned long long flag = 1ULL << (size_t * 8 - 1); /*(size_t * 8)为二进制位数*/
+    while (0 == (num & flag)) /*记1前0的个数*/
     {
         flag >>= 1;
         ++count;
@@ -33,6 +39,7 @@ void printBin(const unsigned long long num, const int size_t, const unsigned int
             if (count % group_size == 0)
                 printf(" ");
     }
+_end:
     printf("\n");
 }
 long long int binstrToOct(const char *str)
