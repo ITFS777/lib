@@ -98,8 +98,6 @@ int dec_com(int dec[3][3])
 bool is_prime_num(long long int num) 
 { /* 判断给定整数是否是素数,需包含math.h */
 	int i = 0;
-	if (num == 1)
-		return false;
 	if ((num == 2) || (num == 3))
 		return true;
 	if ((num % 6 != 1) && (num % 6 != 5))
