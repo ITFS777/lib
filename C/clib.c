@@ -14,7 +14,7 @@ bool is_num(char ch);
 void *hash(const char *name, const void *base, int size, const char *hash_salt);
 //////////////////////////////////////////////////////////////////////////
 int get_string(char *str)
-{ /* 将读取的字符串保存在str中,并返回字符串长度,需包含strlib.h */
+{ /* 将读取的字符串保存在str中,并返回字符串长度,需包含strlib.h #开销过大，不建议使用# */
 	int i = 0;
 	char ch = 0;
 	while ((ch = getchar()) != '\n')
