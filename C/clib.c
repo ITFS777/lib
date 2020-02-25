@@ -4,16 +4,14 @@
 #include <time.h>
 #include <stdbool.h>
 //////////////////////////////////////////////////////////////////////////
-char *get_string(char *alloc_str_length_1);
-char *get_time(void);
-void insert_str(char *string_1, char *string_2, char ch);
-int dec_com(int array_dec_3_3);
-bool is_prime_num(long long int num);
-bool is_letter(char ch);
-bool is_num(char ch);
+char *getStr(char *alloc_str_length_1);
+char *getTime(void);
+void insertStr(char *string_1, char *string_2, char ch);
+int decCom(int array_dec_3_3);
+bool isPrime(long long int num);
 void *hash(const char *name, const void *base, int size, const char *hash_salt);
 //////////////////////////////////////////////////////////////////////////
-int get_string(char *str)
+int getStr(char *str)
 { /* 将读取的字符串保存在str中,并返回字符串长度,需包含strlib.h #开销过大，不建议使用# */
 	int i = 0;
 	char ch = 0;
@@ -28,7 +26,7 @@ int get_string(char *str)
 	return i;
 }
 //////////////////////////////////////////////////////////////////////////
-void insert_str(char *s1, char *s2, char ch)
+void insertStr(char *s1, char *s2, char ch)
 { /* 将字符串s2插入到字符串s1的第一个字符ch后 */
 	int i = 0, start = 0, length = 0;
 	while (s2[length++] != '\0')
@@ -50,7 +48,7 @@ void insert_str(char *s1, char *s2, char ch)
 		*(s1 + start) = *p2;
 }
 //////////////////////////////////////////////////////////////////////////
-char *get_time(void)
+char *getTime(void)
 { /* 返回当前时间的GMT格式字符串,需包含time.h */
 	time_t *ptm = (time_t)malloc(sizeof(long long));
 	time(ptm);
@@ -60,7 +58,7 @@ char *get_time(void)
 	return asctime(tmpt);
 }
 //////////////////////////////////////////////////////////////////////////
-int dec_com(int dec[3][3])
+int decCom(int dec[3][3])
 { /* 计算3x3矩阵的行列式 */
 	//声明必要变量并初始化
 	int i = 0, j = 0, tmp = 0, d = 0;
@@ -95,7 +93,7 @@ int dec_com(int dec[3][3])
 	return d;
 }
 //////////////////////////////////////////////////////////////////////////
-bool is_prime_num(long long int num) 
+bool isPrime(long long int num) 
 { /* 判断给定整数是否是素数,需包含math.h */
 	int i = 0;
 	if ((num == 2) || (num == 3))
@@ -110,22 +108,6 @@ bool is_prime_num(long long int num)
 			continue;
 	}
 	return true;
-}
-//////////////////////////////////////////////////////////////////////////
-bool is_letter(char ch) 
-{ /* 判断指定字符是否是字母,需包含stdbool.h */
-	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
-		return true;
-	else
-		return false;
-}
-//////////////////////////////////////////////////////////////////////////
-bool is_num(char ch)
-{ /* 判断指定字符是否是数字,需包含stdbool.h */
-	if (ch >= '0' && ch <= '9')
-		return true;
-	else
-		return false;
 }
 //////////////////////////////////////////////////////////////////////////
 void *hash(const char *name, const void *base, int size, const char *hash_salt)
