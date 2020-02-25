@@ -109,6 +109,26 @@ bool isPrime(long long int num)
 	}
 	return true;
 }
+void numBreak(vector<long long int> &result,long long int target)
+{
+    for(int i = 1; i <= target; i++)
+    {
+        if(isPrime(target))
+        {
+            result.push_back(target);
+            break;
+        }
+        else
+            for(/* void */;i <= target; i++)
+                if(isPrime(i))
+                    if((target % i) == 0)
+                    {
+                        result.push_back(i);
+                        target /= i;
+                        break;
+                    }
+    }
+}
 //////////////////////////////////////////////////////////////////////////
 void *hash(const char *name, const void *base, int size, const char *hash_salt)
 { /* 给定hash_salt、散列基址和散列空间大小后,将目的字符串name转换成void类型散列地址 */
@@ -123,5 +143,23 @@ void *hash(const char *name, const void *base, int size, const char *hash_salt)
 		p3 += hash_salt[i % strlen(hash_salt)];
 	}
 	return (base + (tmp * p3 % size));
+}
+//////////////////////////////////////////////////////////////////////////
+unsigned int gcd(unsigned int a, unsigned int b)
+{
+    while (a != b)
+        (a > b) ? (a -= b) : (b -= a);
+    return a;
+}
+unsigned int lcm(unsigned int a, unsigned int b)
+{
+    return a*b/gcd(a,b);
+}
+unsigned int nlcm(unsigned a, vector<unsigned int> list,int n)
+{
+    if((n+1) == list.size())
+        return lcm(a,list[n]);
+    else
+        return nlcm(lcm(a,list[n]),list,n+1);
 }
 //////////////////////////////////////////////////////////////////////////
