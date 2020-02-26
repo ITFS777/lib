@@ -145,17 +145,20 @@ void *hash(const char *name, const void *base, int size, const char *hash_salt)
 	return (base + (tmp * p3 % size));
 }
 //////////////////////////////////////////////////////////////////////////
-unsigned int gcd(unsigned int a, unsigned int b)
-{
-    while (a != b)
-        (a > b) ? (a -= b) : (b -= a);
-    return a;
+long long int gcd(long long int a, long long int b)
+{ // 非递归算法
+    while ((a %= b) && (b %= a));
+    return a + b;
 }
-unsigned int lcm(unsigned int a, unsigned int b)
+long long int gcd(long long int a, long long int b)
+{ // 递归算法
+    return b ? gcd(b, a % b) : a;
+}
+long long int lcm(long long int a, long long int b)
 {
     return a*b/gcd(a,b);
 }
-unsigned int nlcm(unsigned a, vector<unsigned int> list,int n)
+long long int nlcm(long long a, vector<long long int> list,int n)
 {
     if((n+1) == list.size())
         return lcm(a,list[n]);
