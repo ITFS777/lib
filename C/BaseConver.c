@@ -14,7 +14,7 @@ void printBin(const unsigned long long num, const int size_t, const unsigned int
     int count = 0, zero = 0, i = 0;
     if(num == 0)
     {
-        for(i = 0; i < size_t*8;i++)
+        for(i = 0; i < size_t*8;++i)
             putchar('0');
         goto _end;
     }
@@ -27,7 +27,7 @@ void printBin(const unsigned long long num, const int size_t, const unsigned int
     if (group_size != 0)
     {
         zero = count % group_size; /*将每组中不足组数的用0补齐*/
-        for (i = 0; i < zero; i++)
+        for (i = 0; i < zero; ++i)
             printf("0");
     }
     while (flag != 0)
@@ -49,7 +49,7 @@ long long int binstrToOct(const char *str)
     while (str[length++] != '\0')
         ;
     length--;
-    for (i = 0; i < length; i++)
+    for (i = 0; i < length; ++i)
         result += (str[i] - '0') * intPower(2, length - i - 1);
     return result;
 }
@@ -60,7 +60,7 @@ long long int intPower(const int base, const int index)
         return 1;
     long long int result = 1;
     int i = 0;
-    for (i = 0; i < index; i++)
+    for (i = 0; i < index; ++i)
         result *= base;
     return result;
 }
@@ -82,7 +82,7 @@ long long int hexstrToOct(const char *str)
     while (str[length++] != '\0')
         ;
     length--;
-    for (i = 0; i < length; i++)
+    for (i = 0; i < length; ++i)
         result += hexchrToOct(str[i]) * intPower(16, length - i - 1);
     return result;
 }

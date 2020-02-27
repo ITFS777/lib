@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     //selection_sorter(num, length, up_comp);
     count = insertion_sorter(num, length, up_comp);
 
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length; ++i)
     {
         printf("%d ", num[i]);
     }
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     //selection_sorter(num, length, down_comp);
     count = bubble_sorter(num, length, down_comp);
 
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length; ++i)
     {
         printf("%d ", num[i]);
     }
@@ -75,7 +75,7 @@ int bubble_sorter(int *array, int length, bool (*comp)(int, int))
     bool flag = false;
     /* 冒泡排序核心算法 */
     do
-        for (flag = false, i = 0; i < length; i++)
+        for (flag = false, i = 0; i < length; ++i)
             if (comp(array[i], array[i + 1]))
             {
                 SWAP_INT(array[i], array[i + 1])
@@ -95,13 +95,13 @@ int selection_sorter(int *array, int length, bool (*comp)(int, int))
         return 0;
     int i = 0, j = 0, tmp = 0, swap = 0, count = 0;
     /* 选择排序核心算法 */
-    for (i = 0, tmp = 0; i < length; i++)
+    for (i = 0, tmp = 0; i < length; ++i)
     {
-        for (j = i, swap = i; j < length; j++)
+        for (j = i, swap = i; j < length; ++j)
             if (comp(array[swap], array[j])) //遍历寻找余项最值
                 swap = j;
         SWAP_INT(array[swap], array[i]) //将余项最值与未排序数列第一项交换
-        count++;
+        ++count;
     }
     return count;
 }
@@ -122,14 +122,12 @@ int insertion_sorter(int *array, int length, bool (*comp)(int, int))
             do
             {
                 array[p] = array[p - 1]; //大项右移
-                p--;                     //从后往前遍历已排序数列
-                count++;                 //计算总排序次数
+                --p;                     //从后往前遍历已排序数列
+                ++count;                 //计算总排序次数
             } while ((p > 0) && comp(array[p - 1], insert));
             array[p] = insert; //将待排项插入
         }
-
-        i++;
-    } while (i < (length - 1));
+    } while (++i < (length - 1));
     return count; //返回总排序次数(可选)
 }
 

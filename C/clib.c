@@ -42,9 +42,9 @@ void insertStr(char *s1, char *s2, char ch)
 	}
 	p1++;
 	start++;
-	for (i = length; *p1 != '\0'; i++, p1++) /*将要插入的字符后的字符串复制到字符串s2后面*/
+	for (i = length; *p1 != '\0'; ++i, ++p1) /*将要插入的字符后的字符串复制到字符串s2后面*/
 		*(s2 + i) = *p1;
-	for (; *p2 != '\0'; start++, p2++)       /*将字符串s2赋值到要插入的字符后面*/
+	for (; *p2 != '\0'; ++start, ++p2)       /*将字符串s2赋值到要插入的字符后面*/
 		*(s1 + start) = *p2;
 }
 //////////////////////////////////////////////////////////////////////////
@@ -64,13 +64,13 @@ int decCom(int dec[3][3])
 	int i = 0, j = 0, tmp = 0, d = 0;
 
 	//读取行列式
-	for (i = 0; i < 3; i++)
-		for (j = 0; j < 3; j++)
+	for (i = 0; i < 3; ++i)
+		for (j = 0; j < 3; ++j)
 			scanf(" %d", &det[i][j]);
 	//计算行列式
 	for (i = 0; i < 3; i++)
 	{
-		for (j = 0, tmp = 1; j < 3; j++)
+		for (j = 0, tmp = 1; j < 3; ++j)
 		{
 			if ((i + j) < 3)
 				tmp *= det[j][j + i];
@@ -79,9 +79,9 @@ int decCom(int dec[3][3])
 		}
 		d += tmp;
 	}
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 3; ++i)
 	{
-		for (j = 3 - 1, tmp = 1; j >= 0; j--)
+		for (j = 3 - 1, tmp = 1; j >= 0; --j)
 		{
 			if ((3 - 1 - j + i) < 3)
 				tmp *= det[j][3 - 1 - j + i];
@@ -100,7 +100,7 @@ bool isPrime(long long int num)
 		return true;
 	if ((num % 6 != 1) && (num % 6 != 5))
 		return false;
-	for (i = 2; i <= sqrt(num); i++)
+	for (i = 2; i <= sqrt(num); ++i)
 	{
 		if (num % i == 0)
 			return false;
@@ -111,7 +111,7 @@ bool isPrime(long long int num)
 }
 void numBreak(vector<long long int> &result,long long int target)
 {
-    for(int i = 1; i <= target; i++)
+    for(int i = 1; i <= target; ++i)
     {
         if(isPrime(target))
         {
@@ -119,7 +119,7 @@ void numBreak(vector<long long int> &result,long long int target)
             break;
         }
         else
-            for(/* void */;i <= target; i++)
+            for(/* void */;i <= target; ++i)
                 if(isPrime(i))
                     if((target % i) == 0)
                     {
@@ -132,10 +132,9 @@ void numBreak(vector<long long int> &result,long long int target)
 //////////////////////////////////////////////////////////////////////////
 void *hash(const char *name, const void *base, int size, const char *hash_salt)
 { /* 给定hash_salt、散列基址和散列空间大小后,将目的字符串name转换成void类型散列地址 */
-	int i = 0;
 	long long int tmp = 0, p3 = 0;
 	char p1 = 0, p2 = 0;
-	for (i = 0; i < strlen(name); i++)
+	for (int i = 0; i < strlen(name); ++i)
 	{
 		p1 = (name[i] & 0xA5) | (hash_salt[i % strlen(hash_salt)] & 0x5A);
 		p2 = (name[i] & 0x5A) | (hash_salt[i % strlen(hash_salt)] & 0xA5);
