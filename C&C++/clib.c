@@ -37,14 +37,14 @@ void insertStr(char *s1, char *s2, char ch)
 	p2 = s2;
 	while (*p1 != ch)
 	{
-		p1++;	 /*定位到要插入的字符处*/
+		p1++;	/*定位到要插入的字符处*/
 		start++; /*将插入偏移量记为start*/
 	}
 	p1++;
 	start++;
 	for (i = length; *p1 != '\0'; ++i, ++p1) /*将要插入的字符后的字符串复制到字符串s2后面*/
 		*(s2 + i) = *p1;
-	for (; *p2 != '\0'; ++start, ++p2)       /*将字符串s2赋值到要插入的字符后面*/
+	for (; *p2 != '\0'; ++start, ++p2) /*将字符串s2赋值到要插入的字符后面*/
 		*(s1 + start) = *p2;
 }
 //////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ int decCom(int dec[3][3])
 	return d;
 }
 //////////////////////////////////////////////////////////////////////////
-bool isPrime(long long int num) 
+bool isPrime(long long int num)
 { /* 判断给定整数是否是素数,需包含math.h */
 	int i = 0;
 	if ((num == 2) || (num == 3))
@@ -109,24 +109,31 @@ bool isPrime(long long int num)
 	}
 	return true;
 }
-void numBreak(vector<long long int> &result,long long int target)
+void numBreak(vector<long long int> &result, long long int target)
 {
-    for(int i = 1; i <= target; ++i)
+    int i = 2;
+    while (i <= target)
     {
-        if(isPrime(target))
+        if (isPrime(target))
         {
             result.push_back(target);
             break;
         }
         else
-            for(/* void */;i <= target; ++i)
-                if(isPrime(i))
-                    if((target % i) == 0)
+            while (i <= target)
+                if (isPrime(i))
+                {
+                    if ((target % i) == 0)
                     {
                         result.push_back(i);
                         target /= i;
                         break;
                     }
+                    else
+                        ++i;
+                }
+                else
+                    ++i;
     }
 }
 //////////////////////////////////////////////////////////////////////////
@@ -146,22 +153,23 @@ void *hash(const char *name, const void *base, int size, const char *hash_salt)
 //////////////////////////////////////////////////////////////////////////
 long long int gcd(long long int a, long long int b)
 { // 非递归算法
-    while ((a %= b) && (b %= a));
-    return a + b;
+	while ((a %= b) && (b %= a))
+		;
+	return a + b;
 }
 long long int gcd(long long int a, long long int b)
 { // 递归算法
-    return b ? gcd(b, a % b) : a;
+	return b ? gcd(b, a % b) : a;
 }
 long long int lcm(long long int a, long long int b)
 {
-    return a*b/gcd(a,b);
+	return a * b / gcd(a, b);
 }
-long long int nlcm(long long a, vector<long long int> list,int n)
+long long int nlcm(long long a, vector<long long int> list, int n)
 {
-    if((n+1) == list.size())
-        return lcm(a,list[n]);
-    else
-        return nlcm(lcm(a,list[n]),list,n+1);
+	if ((n + 1) == list.size())
+		return lcm(a, list[n]);
+	else
+		return nlcm(lcm(a, list[n]), list, n + 1);
 }
 //////////////////////////////////////////////////////////////////////////
