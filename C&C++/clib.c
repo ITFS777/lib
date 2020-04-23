@@ -94,20 +94,16 @@ int decCom(int dec[3][3])
 }
 //////////////////////////////////////////////////////////////////////////
 bool isPrime(long long int num)
-{ /* 判断给定整数是否是素数,需包含math.h */
-	int i = 0;
-	if ((num == 2) || (num == 3))
-		return true;
-	if ((num % 6 != 1) && (num % 6 != 5))
-		return false;
-	for (i = 2; i <= sqrt(num); ++i)
-	{
-		if (num % i == 0)
-			return false;
-		else
-			continue;
-	}
-	return true;
+{
+    int i = 0;
+    if ((num == 2) || (num == 3))
+        return true;
+    if ((num % 6 != 1) && (num % 6 != 5))
+        return false;
+    for (i = 2; i <= sqrt(num); ++i)
+        if (num % i == 0)
+            return false;
+    return true;
 }
 void numBreak(vector<long long int> &result, long long int target)
 {
