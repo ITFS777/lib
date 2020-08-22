@@ -1,13 +1,4 @@
-#include <stdio.h>
-long long int intPower(const int base, const int index);
-//////////////////////////////////////////////////////////////////////////
-/* 二进制与十进制相互转换 */
-void printBin(const unsigned long long num, const int size_t, const unsigned int group_size);
-long long int binstrToOct(const char *str);
-//////////////////////////////////////////////////////////////////////////
-/* 十进制与十六进制相互转换 */
-int hexchrToOct(const char hex);
-long long int hexstrToOct(const char *str);
+#include "BaseConver.h"
 //////////////////////////////////////////////////////////////////////////
 void printBin(const unsigned long long num, const int size_t, const unsigned int group_size)
 { //num为待转换为二进制数的十进制数原形，size_t为字节宽度，group_size为位分组大小,0表示不分组

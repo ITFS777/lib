@@ -1,18 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <stdbool.h>
-#include <string>
-#include <conio.h>
-//////////////////////////////////////////////////////////////////////////
-char *getStr(char *alloc_str_length_1);
-char *getTime(void);
-void insertStr(char *string_1, char *string_2, char ch);
-int decCom(int array_dec_3_3);
-bool isPrime(long long int num);
-void *hash(const char *name, const void *base, int size, const char *hash_salt);
-std::string getPasswd(void);
+#include "clib.h"
 //////////////////////////////////////////////////////////////////////////
 int getStr(char *str)
 { /* 将读取的字符串保存在str中,并返回字符串长度,需包含strlib.h #开销过大，不建议使用# */
@@ -170,39 +156,5 @@ long long int nlcm(long long a, vector<long long int> list, int n)
 		return lcm(a, list[n]);
 	else
 		return nlcm(lcm(a, list[n]), list, n + 1);
-}
-//////////////////////////////////////////////////////////////////////////
-std::string getPasswd(void)
-{
-    std::cout << "Password:";
-    std::vector<char> buffer;
-    buffer.clear();
-    ostringstream passwd;
-    char key = 0;
-    while (key != '\n')
-    {
-        if (_kbhit())
-        {
-            key = _getch();
-            switch (key)
-            {
-            case 8: // BACKSPACE
-                printf("\b \b");
-                if (!buffer.empty())
-                    buffer.pop_back();
-                break;
-            case 13: // ENTER
-                key = '\n';
-                break;
-            default: // INPUT
-                putchar('*');
-                buffer.push_back(key);
-                break;
-            }
-        }
-    }
-    for (auto &i : buffer)
-        passwd << i;
-    return passwd.str();
 }
 ////////////////////////////////////////////////////////////////////////////////
