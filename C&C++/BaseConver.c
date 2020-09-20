@@ -1,7 +1,7 @@
 #include "BaseConver.h"
 //////////////////////////////////////////////////////////////////////////
 void printBin(const unsigned long long num, const int size_t, const unsigned int group_size)
-{ //num为待转换为二进制数的十进制数原形，size_t为字节宽度，group_size为位分组大小,0表示不分组
+{ //num为待转换为二进制数的十进制数原形，size_t为类型宽度，group_size为位分组大小,0表示不分组
     int count = 0, zero = 0, i = 0;
     if(num == 0)
     {
