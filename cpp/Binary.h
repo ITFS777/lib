@@ -24,8 +24,8 @@ public:
     Binary(long long _LL) : _Int64(_LL) {_signed = true;}
     Binary(unsigned long long _ULL) : _Int64(_ULL) {_signed = false;}
 
-    std::string bin(const int _BitWidth, const unsigned int _SeperationSize) const;
-    void setBit(const unsigned int target, const bool flag);
+    std::string str(const int _BitWidth, const unsigned int _SeperationSize) const;
+    void set(const unsigned int target, const bool flag);
 private:
     bool _signed;
     unsigned long long int _Int64;

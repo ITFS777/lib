@@ -1,6 +1,6 @@
 #include "Binary.h"
 ////////////////////////////////////////////////////////////////////////////////
-std::string Binary::bin(const int _BitWidth, const unsigned int _SeperationSize) const
+std::string Binary::str(const int _BitWidth, const unsigned int _SeperationSize) const
 {
 
     int count = 0;
@@ -22,7 +22,7 @@ std::string Binary::bin(const int _BitWidth, const unsigned int _SeperationSize)
     return bin_str.str();
 }
 ////////////////////////////////////////////////////////////////////////////////
-void Binary::setBit(const unsigned int target, const bool flag)
+void Binary::set(const unsigned int target, const bool flag)
 {
     unsigned long long p = 1ULL << target;
     (flag) ? _Int64 &= p : _Int64 |= ~p;
